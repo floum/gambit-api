@@ -1,4 +1,9 @@
 class MovesController < ApplicationController
+  def random
+    @move = Move.order('random()').first
+    render json: @move
+  end
+
   def create
     @move = Move.new(move_params)
     if @move.save
