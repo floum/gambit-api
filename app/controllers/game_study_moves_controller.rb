@@ -1,0 +1,19 @@
+class GameStudyMovesController < ApplicationController
+  def create
+    @move = Move.find_or_create_by(game_study_move_params[:move])
+    @game_study = GameStudy.find(params[:game_study_id])
+    @game_study_move = GameStudyMove.new(
+      game_study: @game_study,
+      move: @move
+    )
+    if @game_study_move.save
+      render json: @game_study_move
+    end
+  end
+
+  private
+
+  def game_study_move_params
+    params.permit(:move)
+  end
+end

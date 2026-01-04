@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get '/random-move', to: 'moves#random'
   resources :moves
   resources :games
+  resources :game_studies do
+    resources :game_study_moves
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
