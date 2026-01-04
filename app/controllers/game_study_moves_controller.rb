@@ -1,6 +1,6 @@
 class GameStudyMovesController < ApplicationController
   def create
-    @move = Move.find_or_create_by(game_study_move_params[:move])
+    @move = Move.find_or_create_by(game_study_move_params)
     @game_study = GameStudy.find(params[:game_study_id])
     @game_study_move = GameStudyMove.new(
       game_study: @game_study,
@@ -14,6 +14,6 @@ class GameStudyMovesController < ApplicationController
   private
 
   def game_study_move_params
-    params.permit(:move)
+    params.require(:move).permit(:san, :color, :piece, :from, :to, :flags, :lan, :before, :after)
   end
 end
