@@ -14,6 +14,6 @@ class GameStudyMovesController < ApplicationController
   private
 
   def game_study_move_params
-    params.require(:move).permit(:san, :color, :piece, :from, :to, :flags, :lan, :before, :after)
+    params.require(:move).permit(Move::ATTRIBUTES)
   end
 end

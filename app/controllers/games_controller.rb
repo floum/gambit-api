@@ -10,7 +10,11 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = Game.new(pgn: game_params[:pgn])
+    game_params[:moves].each do |move_params|
+      move = Move.find_or_create_by(move_params)
+      @game.game_moves << GameMove.new(move: move, game: @game)
+    end
     if @game.save
       render json: @game, status: 201
     else
@@ -21,6 +25,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.permit(:pgn)
+    params.require(:game).permit(:pgn, moves: [Move::ATTRIBUTES])
   end
 end

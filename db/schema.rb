@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_04_001518) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_04_150826) do
+  create_table "game_moves", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "game_id", null: false
+    t.integer "move_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_moves_on_game_id"
+    t.index ["move_id"], name: "index_game_moves_on_move_id"
+  end
+
   create_table "game_studies", force: :cascade do |t|
     t.string "color"
     t.datetime "created_at", null: false
@@ -37,17 +46,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_001518) do
   create_table "moves", force: :cascade do |t|
     t.string "after"
     t.string "before"
+    t.string "captured"
     t.string "color"
     t.datetime "created_at", null: false
     t.string "flags"
     t.string "from"
     t.string "lan"
     t.string "piece"
+    t.string "promotion"
     t.string "san"
     t.string "to"
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "game_moves", "games"
+  add_foreign_key "game_moves", "moves"
   add_foreign_key "game_studies", "games"
   add_foreign_key "game_study_moves", "game_studies"
   add_foreign_key "game_study_moves", "moves"
