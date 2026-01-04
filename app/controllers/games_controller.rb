@@ -10,7 +10,13 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(pgn: game_params[:pgn])
+    @game = Game.new(
+      pgn: game_params[:pgn],
+      white: game_params[:white],
+      black: game_params[:black],
+      played: game_params[:played],
+      result: game_params[:result]
+    )
     game_params[:moves].each do |move_params|
       move = Move.find_or_create_by(move_params)
       @game.game_moves << GameMove.new(move: move, game: @game)
@@ -25,6 +31,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:pgn, moves: [Move::ATTRIBUTES])
+    params.require(:game).permit(:pgn, :white, :black, :played, :result, moves: [Move::ATTRIBUTES])
   end
 end
