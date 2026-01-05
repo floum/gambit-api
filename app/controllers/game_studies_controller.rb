@@ -6,7 +6,10 @@ class GameStudiesController < ApplicationController
 
   def show
     @game_study = GameStudy.find(params[:id])
-    render json: @game_study, include: [:game, :game_study_moves]
+    render json: @game_study, include: {
+      game: { include: { game_moves: { methods: :san } } },
+      game_study_moves: { methods: :san }
+      }
   end
 
   def update
