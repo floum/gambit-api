@@ -1,7 +1,7 @@
 class GameStudiesController < ApplicationController
   def index
     @game_studies = GameStudy.all
-    render json: @game_studies
+    render json: @game_studies, include: [:game]
   end
 
   def show
@@ -15,9 +15,18 @@ class GameStudiesController < ApplicationController
     render json: @game_study
   end
 
+  def create
+    @game_study = GameStudy.new(game_study_params)
+    if @game_study.save
+      render json: @game_study
+    else
+      render json: @game_study.errors, status: 400
+    end
+  end
+
   private
 
   def game_study_params
-    params.require(:game_study).permit(:moves)
+    params.require(:game_study).permit(:moves, :color, :game_id)
   end
 end
