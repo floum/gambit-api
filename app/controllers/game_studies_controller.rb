@@ -1,7 +1,7 @@
 class GameStudiesController < ApplicationController
   def index
     @game_studies = GameStudy.all
-    render json: @game_studies, include: [:game]
+    render json: @game_studies, include: [:game], methods: :progress
   end
 
   def show
