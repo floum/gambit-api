@@ -7,7 +7,7 @@ class GameStudyMovesController < ApplicationController
       move: @move
     )
     if @game_study_move.save
-      render json: @game_study_move
+      render json: @game_study_move, status: 201
     end
   end
 
