@@ -9,7 +9,7 @@ class GameStudiesController < ApplicationController
 
     render json: @game_study, 
       include: {
-        game_study_moves: { methods: :san },
+        game_study_moves: { methods: [:san, :evaluation] },
       },
       methods: [:expected_moves, :complete]
   end

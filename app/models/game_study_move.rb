@@ -6,4 +6,5 @@ class GameStudyMove < ApplicationRecord
   validates_presence_of :game_study
 
   delegate :san, to: :move
+  delegate :evaluation, to: :move
 end

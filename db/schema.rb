@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_04_151834) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_06_151052) do
   create_table "game_moves", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "game_id", null: false
@@ -63,9 +63,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_151834) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stockfish_scores", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "move_id", null: false
+    t.float "score"
+    t.datetime "updated_at", null: false
+    t.index ["move_id"], name: "index_stockfish_scores_on_move_id"
+  end
+
   add_foreign_key "game_moves", "games"
   add_foreign_key "game_moves", "moves"
   add_foreign_key "game_studies", "games"
   add_foreign_key "game_study_moves", "game_studies"
   add_foreign_key "game_study_moves", "moves"
+  add_foreign_key "stockfish_scores", "moves"
 end

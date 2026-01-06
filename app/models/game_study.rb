@@ -3,6 +3,8 @@ class GameStudy < ApplicationRecord
   has_many :moves, through: :game
   has_many :game_study_moves, dependent: :destroy
 
+  validates :color, inclusion: { in: %w(w b) }
+
   def expected_moves
     moves.where(color: color)
   end
