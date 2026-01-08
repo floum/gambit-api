@@ -31,7 +31,7 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    render :nil, status: 201
+    render :nil, status: 204
   end
 
   private
