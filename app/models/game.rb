@@ -9,4 +9,8 @@ class Game < ApplicationRecord
       .sort_by(&:ply)
       .find { |move| (move.cpl || 0) > 100 }
   end
+
+  def losing_mistake
+    moves.sort_by(&:ply).reverse.find(&:game_changer?)
+  end
 end
