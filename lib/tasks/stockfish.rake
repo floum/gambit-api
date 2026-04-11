@@ -18,3 +18,4 @@ task stockfish: :environment do
     end
   end
 end
+

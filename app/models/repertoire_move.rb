@@ -4,6 +4,8 @@ class RepertoireMove < ApplicationRecord
 
   delegate :before, to: :move
   delegate :san, to: :move
+  delegate :box, to: :move
+  delegate :crushing, to: :move
 
   validate :unique_move_in_repertoire
 

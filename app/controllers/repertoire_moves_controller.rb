@@ -10,7 +10,7 @@ class RepertoireMovesController < ApplicationController
     else
       @repertoire_move = RepertoireMove.create(repertoire: @repertoire, move: @move)
       if @repertoire_move.save
-        render :nothing, status: 201
+        render json: @repertoire_move, status: 201
       else
         render json: @repertoire_move.errors, status: 400
       end
