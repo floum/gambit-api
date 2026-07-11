@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rejected_moves, only: [:create]
   resources :repertoire_moves
   resources :players
   get '/random-move', to: 'moves#random'

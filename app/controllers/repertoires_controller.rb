@@ -15,7 +15,7 @@ class RepertoiresController < ApplicationController
 
   def show
     @repertoire = Repertoire.find(params[:id])
-    render json: @repertoire, include: { repertoire_moves: { methods: [:fen, :san, :box, :crushing] } }
+    render json: @repertoire, include: { repertoire_moves: { methods: [:fen, :san, :box, :crushing], rejected_moves: { methods: [:fen, :san] } } }
   end
 
   private

@@ -1,19 +1,16 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show update destroy ]
 
-  # GET /players
   def index
     @players = Player.all
 
     render json: @players
   end
 
-  # GET /players/1
   def show
     render json: @player
   end
 
-  # POST /players
   def create
     @player = Player.new(player_params)
 
@@ -24,7 +21,6 @@ class PlayersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /players/1
   def update
     if @player.update(player_params)
       render json: @player
@@ -33,18 +29,15 @@ class PlayersController < ApplicationController
     end
   end
 
-  # DELETE /players/1
   def destroy
     @player.destroy!
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params.expect(:id))
     end
 
-    # Only allow a list of trusted parameters through.
     def player_params
       params.expect(player: [ :name ])
     end
