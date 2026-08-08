@@ -22,10 +22,6 @@ class Move < ApplicationRecord
     eval_before * eval_after < 0
   end
 
-  def as_json(options = nil)
-    super methods: :evaluation
-  end
-
   def eval_before
     return unless score_before
     score_before * (white? ? 1 : -1)
@@ -63,4 +59,5 @@ class Move < ApplicationRecord
       (score_after * -1 - score_before) * -100
     end
   end
+
 end
