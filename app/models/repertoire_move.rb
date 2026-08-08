@@ -9,6 +9,8 @@ class RepertoireMove < ApplicationRecord
 
   validate :unique_move_in_repertoire
 
+  validates :status, inclusion: { in: %w(confirmed rejected) }, allow_nil: true
+
   def fen
     before
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_11_112641) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_08_192835) do
   create_table "game_moves", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "game_id", null: false
@@ -90,10 +90,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_11_112641) do
   end
 
   create_table "repertoire_moves", force: :cascade do |t|
-    t.boolean "confirmed"
     t.datetime "created_at", null: false
     t.integer "move_id", null: false
     t.integer "repertoire_id", null: false
+    t.string "status"
     t.datetime "updated_at", null: false
     t.index ["move_id"], name: "index_repertoire_moves_on_move_id"
     t.index ["repertoire_id"], name: "index_repertoire_moves_on_repertoire_id"
